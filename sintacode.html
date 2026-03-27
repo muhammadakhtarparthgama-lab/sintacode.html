@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SECURITY BREACH</title>
+  <style>
+    body {
+      background:black;
+      color:lime;
+      font-family:monospace;
+      text-align:center;
+      overflow:hidden;
+    }
+    h1 {
+      color:red;
+      animation:blink 0.5s infinite;
+    }
+    @keyframes blink {50%{opacity:0}}
+    #log {
+      font-size:14px;
+      color:red;
+      height:120px;
+      overflow:hidden;
+    }
+    button {
+      padding:10px;
+      background:red;
+      color:white;
+      border:none;
+      display:none;
+      margin-top:15px;
+    }
+  </style>
+</head>
+<body onclick="fs()">
+
+<h1>⚠ SECURITY BREACH ⚠</h1>
+<p id="target"></p>
+
+<video id="cam" autoplay style="width:180px;border:2px solid red;"></video>
+
+<p id="status">Initializing...</p>
+<p id="percent">0%</p>
+
+<div id="log"></div>
+
+<button onclick="end()">⚠LOCK DEVICE⚠</button>
+
+<audio id="alarm" loop>
+  <source src="https://www.soundjay.com/button/beep-07.wav">
+</audio>
+
+<script>
+let nama = prompt("Masukkan nama lengkap anda:");
+document.getElementById("target").innerText = "Target: " + nama;
+
+// fullscreen
+function fs(){
+ document.documentElement.requestFullscreen();
+}
+
+// kamera
+navigator.mediaDevices.getUserMedia({video:true})
+.then(s=>cam.srcObject=s)
+.catch(()=>{});
+
+// log generator
+let logs = [
+ "⚠Mengambil data...",
+ "⚠Mengakses galeri...",
+ "⚠Mengambil kontak...",
+ "⚠Mengirim data ke server...",
+ "⚠Membaca pesan...",
+ "⚠Menghapus file penting..."
+];
+
+setInterval(()=>{
+ let l = logs[Math.floor(Math.random()*logs.length)];
+ document.getElementById("log").innerHTML += l+"<br>";
+},500);
+
+// scan
+let p=0;
+let alarm=document.getElementById("alarm");
+
+let scan=setInterval(()=>{
+ p+=Math.floor(Math.random()*7)+3;
+ if(p>=100){
+  p=100;
+  clearInterval(scan);
+
+  status.innerHTML="⚠!DEVICE TERKUNCI!⚠";
+  alarm.play();
+
+  if(navigator.vibrate){
+    setInterval(()=>navigator.vibrate([300,200,300]),1000);
+  }
+
+  countdown();
+ }
+ percent.innerText=p+"%";
+},200);
+
+// countdown
+function countdown(){
+ let t=10;
+ let cd=setInterval(()=>{
+  status.innerHTML="Mengunci permanen dalam "+t+" detik...";
+  t--;
+  if(t<0){
+    clearInterval(cd);
+    document.querySelector("button").style.display="inline-block";
+  }
+ },1000);
+}
+
+// akhir prank
+function end(){
+ document.body.innerHTML="<h1 style='color:red;'>!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠</h1>";
+}
+</script>
+
+</body>
+</html>
