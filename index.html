@@ -43,7 +43,7 @@
 
 <div id="log"></div>
 
-<button onclick="end()">⚠LOCK DEVICE⚠</button>
+<button onclick="end()">⚠!LOCK DEVICE!⚠</button>
 
 <audio id="alarm" loop>
   <source src="https://www.soundjay.com/button/beep-07.wav">
@@ -88,7 +88,7 @@ let scan=setInterval(()=>{
   p=100;
   clearInterval(scan);
 
-  status.innerHTML="⚠!DEVICE TERKUNCI!⚠";
+  status.innerHTML=" DEVICE TERKUNCI!";
   alarm.play();
 
   if(navigator.vibrate){
@@ -115,7 +115,7 @@ function countdown(){
 
 // akhir prank
 function end(){
- document.body.innerHTML="<h1 style='color:red;'>!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠</h1>";
+ document.body.innerHTML="<h1 style='color:red;'>⚠!⚠!⚠!⚠!⚠!⚠!⚠!⚠!</h1>";
 }
 </script>
 
